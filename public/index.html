@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>𝐈’𝐦 𝐕𝐞𝐫𝐧</title>
   <style>
-    /* Reset & Background */
     * {
       margin: 0;
       padding: 0;
@@ -26,7 +25,6 @@
       z-index: 0;
     }
 
-    /* Loading Screen */
     #loading-screen {
       position: fixed;
       top: 0;
@@ -61,7 +59,6 @@
       }
     }
 
-    /* Dashboard Container */
     #main-content {
       opacity: 0;
       z-index: 2;
@@ -118,29 +115,25 @@
       color: #00ffff;
     }
 
-    .button-group {
+    .text-links {
+      margin-top: 25px;
       display: flex;
       flex-direction: column;
-      gap: 15px;
-      margin-top: 30px;
+      gap: 10px;
     }
 
-    .visit-btn {
-      padding: 12px 24px;
+    .text-links a {
+      color: #00ffff;
+      text-decoration: none;
       font-size: 16px;
-      color: #000;
-      background-color: #00ffff;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
       font-weight: bold;
       transition: all 0.3s ease;
-      box-shadow: 0 0 10px #00ffff;
+      text-shadow: 0 0 10px #00ffff;
     }
 
-    .visit-btn:hover {
-      background-color: #0ff;
-      box-shadow: 0 0 25px #00ffff;
+    .text-links a:hover {
+      color: #0ff;
+      text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff;
       transform: scale(1.05);
     }
 
@@ -149,17 +142,19 @@
         width: 90%;
         padding: 20px;
       }
+
       h1 {
         font-size: 22px;
       }
-      .visit-btn {
+
+      .text-links a {
         font-size: 14px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Matrix Effect -->
+  <!-- Matrix Background -->
   <canvas id="matrix"></canvas>
 
   <!-- Loading Screen -->
@@ -172,24 +167,18 @@
     <div class="container">
       <img src="https://i.imgur.com/JjDryK9.jpeg" alt="Profile" class="profile-img" />
       <h1>𝐈’𝐦 𝐕𝐞𝐫𝐧</h1>
-      <div class="button-group">
-        <a href="https://erash-auot.vercel.app/" target="_blank">
-          <button class="visit-btn">➢ Ai Chatbot</button>
-        </a>
-        <a href="https://urangkapolka.vercel.app/docs" target="_blank">
-          <button class="visit-btn">➢ Rest Api</button>
-        </a>
-        <a href="https://image-generator-nine-lyart.vercel.app/" target="_blank">
-        <a/>
-          <button class="visit-btn">➢ Image Generator</button>
-href="https://automated-messenger-bot.onrender.com/" target="_blank">
-          <button class="visit-btn">➢ Messenger Bot</button>
-        </a>
+
+      <!-- Glowing Text Links Inside the Box -->
+      <div class="text-links">
+        <a href="https://erash-auot.vercel.app/" target="_blank">➢ Ai Chatbot</a>
+        <a href="https://urangkapolka.vercel.app/docs" target="_blank">➢ Rest Api</a>
+        <a href="https://image-generator-nine-lyart.vercel.app/" target="_blank">➢ Image Generator</a>
+        <a href="https://automated-messenger-bot.onrender.com/" target="_blank">➢ Messenger Bot</a>
       </div>
     </div>
   </div>
 
-  <!-- Matrix Animation Script -->
+  <!-- Matrix Script -->
   <script>
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
@@ -200,18 +189,15 @@ href="https://automated-messenger-bot.onrender.com/" target="_blank">
     const katakana = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ';
     const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const nums = '0123456789';
-
     const alphabet = katakana + latin + nums;
 
     const fontSize = 14;
     const columns = canvas.width / fontSize;
-
     const drops = Array.from({ length: columns }).fill(1);
 
     function draw() {
       ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-
       ctx.fillStyle = '#0ff';
       ctx.font = fontSize + 'px monospace';
 
