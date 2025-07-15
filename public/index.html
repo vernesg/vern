@@ -5,31 +5,82 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>𝐈’𝐦 𝐕𝐞𝐫𝐧</title>
   <style>
-    /* Background Matrix Animation */
-    body {
+    /* Reset & Background */
+    * {
       margin: 0;
       padding: 0;
-      overflow: hidden;
-      height: 100vh;
-      background: #000;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      color: #0ff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
+      box-sizing: border-box;
     }
 
-    /* Canvas for Matrix Effect */
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow: hidden;
+      background: #000;
+    }
+
     canvas {
-      position: absolute;
+      position: fixed;
       top: 0;
       left: 0;
       z-index: 0;
     }
 
-    .container {
+    /* Loading Screen */
+    #loading-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100vh;
+      width: 100vw;
+      background: rgba(0, 0, 0, 0.95);
+      color: #00ffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      flex-direction: column;
+      animation: fadeOut 1s ease-in-out forwards;
+      animation-delay: 2.5s;
+    }
+
+    #loading-screen h1 {
+      font-size: 32px;
+      animation: glowText 1.5s infinite alternate;
+    }
+
+    @keyframes glowText {
+      from { text-shadow: 0 0 10px #00ffff; }
+      to { text-shadow: 0 0 30px #00ffff; }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    /* Dashboard Container */
+    #main-content {
+      opacity: 0;
       z-index: 2;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      animation: fadeIn 1s ease-in-out forwards;
+      animation-delay: 3.5s;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .container {
       text-align: center;
       border: 2px solid #0ff;
       padding: 40px;
@@ -41,12 +92,8 @@
     }
 
     @keyframes glow {
-      from {
-        box-shadow: 0 0 10px #0ff;
-      }
-      to {
-        box-shadow: 0 0 30px #0ff;
-      }
+      from { box-shadow: 0 0 10px #0ff; }
+      to { box-shadow: 0 0 30px #0ff; }
     }
 
     .profile-img {
@@ -60,25 +107,15 @@
     }
 
     @keyframes pulse {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 0 10px #0ff;
-      }
-      50% {
-        transform: scale(1.05);
-        box-shadow: 0 0 25px #0ff;
-      }
-      100% {
-        transform: scale(1);
-        box-shadow: 0 0 10px #0ff;
-      }
+      0% { transform: scale(1); box-shadow: 0 0 10px #0ff; }
+      50% { transform: scale(1.05); box-shadow: 0 0 25px #0ff; }
+      100% { transform: scale(1); box-shadow: 0 0 10px #0ff; }
     }
 
     h1 {
       margin: 20px 0 10px;
       font-size: 28px;
       color: #00ffff;
-      animation: fadeIn 2s ease-in-out;
     }
 
     .button-group {
@@ -86,10 +123,6 @@
       flex-direction: column;
       gap: 15px;
       margin-top: 30px;
-    }
-
-    .button-group a {
-      text-decoration: none;
     }
 
     .visit-btn {
@@ -111,27 +144,14 @@
       transform: scale(1.05);
     }
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
     @media (max-width: 500px) {
       .container {
         width: 90%;
         padding: 20px;
       }
-
       h1 {
         font-size: 22px;
       }
-
       .visit-btn {
         font-size: 14px;
       }
@@ -139,26 +159,35 @@
   </style>
 </head>
 <body>
+  <!-- Matrix Effect -->
   <canvas id="matrix"></canvas>
 
-  <div class="container">
-    <img src="https://i.imgur.com/JjDryK9.jpeg" alt="Profile" class="profile-img" />
-    <h1>𝐈’𝐦 𝐕𝐞𝐫𝐧</h1>
-    <div class="button-group">
-      <a href="https://erash-auot.vercel.app/" target="_blank">
-        <button class="visit-btn">➢ Ai Chatbot</button>
-      </a>
-      <a href="https://urangkapolka.vercel.app/docs" target="_blank">
-        <button class="visit-btn">➢ Rest Api</button>
-      </a>
-      <a href="https://automated-messenger-bot.onrender.com/" target="_blank">
-        <button class="visit-btn">➢ Messenger Bot</button>
-      </a>
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <h1>Loading Please Wait...</h1>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content">
+    <div class="container">
+      <img src="https://i.imgur.com/JjDryK9.jpeg" alt="Profile" class="profile-img" />
+      <h1>𝐈’𝐦 𝐕𝐞𝐫𝐧</h1>
+      <div class="button-group">
+        <a href="https://erash-auot.vercel.app/" target="_blank">
+          <button class="visit-btn">➢ Ai Chatbot</button>
+        </a>
+        <a href="https://urangkapolka.vercel.app/docs" target="_blank">
+          <button class="visit-btn">➢ Rest Api</button>
+        </a>
+        <a href="https://automated-messenger-bot.onrender.com/" target="_blank">
+          <button class="visit-btn">➢ Messenger Bot</button>
+        </a>
+      </div>
     </div>
   </div>
 
+  <!-- Matrix Animation Script -->
   <script>
-    // Matrix Effect Background
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
 
@@ -196,6 +225,7 @@
     }
 
     setInterval(draw, 50);
+
     window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
