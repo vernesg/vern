@@ -78,6 +78,8 @@
     }
 
     .container {
+      max-width: 600px;
+      width: 100%;
       text-align: center;
       border: 2px solid #0ff;
       padding: 50px 40px;
@@ -86,8 +88,6 @@
       box-shadow: 0 0 30px #0ff;
       backdrop-filter: blur(6px);
       animation: glow 2s ease-in-out infinite alternate;
-      max-width: 800px;
-      width: 100%;
     }
 
     @keyframes glow {
@@ -117,43 +117,46 @@
       color: #00ffff;
     }
 
-    .button-group {
+    .text-links {
+      margin-top: 30px;
       display: flex;
       flex-direction: column;
-      gap: 15px;
-      margin-top: 30px;
+      gap: 12px;
     }
 
-    .link-text {
-      font-size: 18px;
+    .text-links a {
       color: #00ffff;
       text-decoration: none;
+      font-size: 18px;
       font-weight: bold;
-      text-shadow: 0 0 8px #00ffff;
       transition: all 0.3s ease;
+      text-shadow: 0 0 10px #00ffff;
     }
 
-    .link-text:hover {
+    .text-links a:hover {
+      color: #0ff;
       text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff;
       transform: scale(1.05);
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
       .container {
         width: 90%;
-        padding: 20px;
+        padding: 30px 20px;
       }
+
       h1 {
         font-size: 22px;
       }
-      .link-text {
-        font-size: 16px;
+
+      .text-links a {
+        font-size: 15px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Matrix Effect -->
+  <!-- Matrix Background -->
   <canvas id="matrix"></canvas>
 
   <!-- Loading Screen -->
@@ -166,16 +169,18 @@
     <div class="container">
       <img src="https://i.imgur.com/JjDryK9.jpeg" alt="Profile" class="profile-img" />
       <h1>𝐈’𝐦 𝐕𝐞𝐫𝐧</h1>
-      <div class="button-group">
-        <a href="https://erash-auot.vercel.app/" target="_blank" class="link-text">➢ Ai Chatbot</a>
-        <a href="https://urangkapolka.vercel.app/docs" target="_blank" class="link-text">➢ Rest Api</a>
-        <a href="https://image-generator-nine-lyart.vercel.app/" target="_blank" class="link-text">➢ Image Generator</a>
-        <a href="https://automated-messenger-bot.onrender.com/" target="_blank" class="link-text">➢ Messenger Bot</a>
+
+      <!-- Glowing Text Links Inside the Wider Box -->
+      <div class="text-links">
+        <a href="https://erash-auot.vercel.app/" target="_blank">➢ Ai Chatbot</a>
+        <a href="https://urangkapolka.vercel.app/docs" target="_blank">➢ Rest Api</a>
+        <a href="https://image-generator-nine-lyart.vercel.app/" target="_blank">➢ Image Generator</a>
+        <a href="https://automated-messenger-bot.onrender.com/" target="_blank">➢ Messenger Bot</a>
       </div>
     </div>
   </div>
 
-  <!-- Matrix Animation Script -->
+  <!-- Matrix Animation -->
   <script>
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
@@ -195,7 +200,6 @@
     function draw() {
       ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-
       ctx.fillStyle = '#0ff';
       ctx.font = fontSize + 'px monospace';
 
@@ -206,6 +210,7 @@
         if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
           drops[i] = 0;
         }
+
         drops[i]++;
       }
     }
