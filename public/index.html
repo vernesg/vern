@@ -78,9 +78,11 @@
     }
 
     .container {
+      max-width: 600px;
+      width: 100%;
       text-align: center;
       border: 2px solid #0ff;
-      padding: 40px;
+      padding: 50px 40px;
       border-radius: 20px;
       background-color: rgba(0, 10, 20, 0.75);
       box-shadow: 0 0 30px #0ff;
@@ -116,16 +118,16 @@
     }
 
     .text-links {
-      margin-top: 25px;
+      margin-top: 30px;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
 
     .text-links a {
       color: #00ffff;
       text-decoration: none;
-      font-size: 16px;
+      font-size: 18px;
       font-weight: bold;
       transition: all 0.3s ease;
       text-shadow: 0 0 10px #00ffff;
@@ -137,10 +139,10 @@
       transform: scale(1.05);
     }
 
-    @media (max-width: 500px) {
+    @media (max-width: 600px) {
       .container {
         width: 90%;
-        padding: 20px;
+        padding: 30px 20px;
       }
 
       h1 {
@@ -148,7 +150,7 @@
       }
 
       .text-links a {
-        font-size: 14px;
+        font-size: 15px;
       }
     }
   </style>
@@ -168,7 +170,7 @@
       <img src="https://i.imgur.com/JjDryK9.jpeg" alt="Profile" class="profile-img" />
       <h1>𝐈’𝐦 𝐕𝐞𝐫𝐧</h1>
 
-      <!-- Glowing Text Links Inside the Box -->
+      <!-- Glowing Text Links Inside the Wider Box -->
       <div class="text-links">
         <a href="https://erash-auot.vercel.app/" target="_blank">➢ Ai Chatbot</a>
         <a href="https://urangkapolka.vercel.app/docs" target="_blank">➢ Rest Api</a>
@@ -178,7 +180,7 @@
     </div>
   </div>
 
-  <!-- Matrix Script -->
+  <!-- Matrix Animation -->
   <script>
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
