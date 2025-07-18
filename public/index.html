@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>𝐈’𝐦 𝐕𝐞𝐫𝐧</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
   <style>
     * {
       margin: 0;
@@ -13,9 +14,11 @@
 
     html, body {
       height: 100%;
+      scroll-behavior: smooth;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      overflow: hidden;
+      overflow-x: hidden;
       background: #000;
+      color: #0ff;
     }
 
     canvas {
@@ -63,12 +66,14 @@
       opacity: 0;
       z-index: 2;
       position: relative;
+      height: auto;
+      padding-top: 110px;
       display: flex;
       justify-content: center;
-      align-items: center;
-      height: 100vh;
       animation: fadeIn 1s ease-in-out forwards;
       animation-delay: 3.5s;
+      flex-direction: column;
+      align-items: center;
     }
 
     @keyframes fadeIn {
@@ -77,17 +82,49 @@
       }
     }
 
-    .container {
-      max-width: 600px;
-      width: 100%;
+    .navbar {
+      background-color: rgba(0, 10, 20, 0.8);
+      box-shadow: 0 0 15px #0ff;
+      backdrop-filter: blur(5px);
+      z-index: 999;
+    }
+
+    .navbar-brand {
+      font-weight: bold;
+      color: #00ffff !important;
+      text-shadow: 0 0 10px #0ff;
+    }
+
+    .navbar-toggler {
+      border: 1px solid #0ff;
+      background: rgba(0, 0, 0, 0.6);
+      outline: none;
+    }
+
+    .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%230ff' viewBox='0 0 30 30'%3e%3cpath stroke='%230ff' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    }
+
+    .navbar-nav .nav-link {
+      color: #0ff !important;
+      font-weight: bold;
+      text-shadow: 0 0 10px #0ff;
+    }
+
+    .navbar-nav .nav-link:hover {
+      text-shadow: 0 0 20px #00ffff;
+    }
+
+    .profile {
       text-align: center;
-      border: 2px solid #0ff;
-      padding: 50px 40px;
+      max-width: 500px;
+      width: 90%;
+      background-color: rgba(0, 10, 20, 0.7);
+      padding: 30px;
       border-radius: 20px;
-      background-color: rgba(0, 10, 20, 0.75);
       box-shadow: 0 0 30px #0ff;
-      backdrop-filter: blur(6px);
       animation: glow 2s ease-in-out infinite alternate;
+      margin-bottom: 60px;
     }
 
     @keyframes glow {
@@ -96,11 +133,11 @@
     }
 
     .profile-img {
-      width: 150px;
-      height: 150px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
-      object-fit: cover;
       border: 3px solid #0ff;
+      object-fit: cover;
       box-shadow: 0 0 20px #0ff;
       animation: pulse 2s infinite;
     }
@@ -111,80 +148,89 @@
       100% { transform: scale(1); box-shadow: 0 0 10px #0ff; }
     }
 
-    h1 {
-      margin: 20px 0 10px;
-      font-size: 28px;
+    .profile h1 {
+      margin-top: 15px;
+      font-size: 26px;
       color: #00ffff;
+      text-shadow: 0 0 10px #0ff;
     }
 
-    .text-links {
-      margin-top: 30px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    .quote {
+      margin-top: 20px;
+      font-style: italic;
+      font-size: 16px;
+      background-color: rgba(0, 20, 30, 0.6);
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px #00ffff80;
+      text-shadow: 0 0 6px #0ff;
     }
 
-    .text-links a {
-      color: #00ffff;
-      text-decoration: none;
-      font-size: 18px;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      text-shadow: 0 0 10px #00ffff;
+    .scroll-section {
+      height: 80vh;
+      padding-top: 80px;
+      border-top: 1px solid #00ffff;
+      margin-top: 50px;
     }
 
-    .text-links a:hover {
-      color: #0ff;
-      text-shadow: 0 0 20px #00ffff, 0 0 30px #00ffff;
-      transform: scale(1.05);
-    }
-
-    @media (max-width: 600px) {
-      .container {
-        width: 90%;
-        padding: 30px 20px;
+    @media (max-width: 768px) {
+      .profile-img {
+        width: 110px;
+        height: 110px;
       }
 
-      h1 {
-        font-size: 22px;
-      }
-
-      .text-links a {
-        font-size: 15px;
+      .profile h1 {
+        font-size: 20px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Matrix Background -->
+
   <canvas id="matrix"></canvas>
 
-  <!-- Loading Screen -->
   <div id="loading-screen">
     <h1>ʟᴏᴀᴅɪɴɢ ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...</h1>
   </div>
 
-  <!-- Main Content -->
-  <div id="main-content">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <div class="container">
+      <a class="navbar-brand" href="#"></a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item"><span class="nav-link">MY PROJECTS</span></li>
+          <li class="nav-item"><a class="nav-link nav-scroll" href="#chatbot">➤ Ai Chatbot</a></li>
+          <li class="nav-item"><a class="nav-link nav-scroll" href="#restapi">➤ Rest API</a></li>
+          <li class="nav-item"><a class="nav-link nav-scroll" href="#imggen">➤ Image Generator</a></li>
+          <li class="nav-item"><a class="nav-link nav-scroll" href="#messenger">➤ Messenger Bot</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="main-content">
+    <div class="profile">
       <img src="https://i.imgur.com/JjDryK9.jpeg" alt="Profile" class="profile-img" />
       <h1>𝐈’𝐦 𝐕𝐞𝐫𝐧</h1>
-
-      <!-- Glowing Text Links Inside the Wider Box -->
-      <div class="text-links">
-        <a href="https://erash-auot.vercel.app/" target="_blank">➢ Ai Chatbot</a>
-        <a href="https://urangkapolka.vercel.app/docs" target="_blank">➢ Rest Api</a>
-        <a href="https://image-generator-nine-lyart.vercel.app/" target="_blank">➢ Image Generator</a>
-        <a href="https://automated-messenger-bot.onrender.com/" target="_blank">➢ Messenger Bot</a>
+      <div class="quote">
+        <p>“A boy with a dream, building code that echoes through the future. Believe in yourself — every great developer was once a beginner.”</p>
       </div>
     </div>
   </div>
+
+  <!-- Scroll Sections -->
+  <div id="chatbot" class="scroll-section"></div>
+  <div id="restapi" class="scroll-section"></div>
+  <div id="imggen" class="scroll-section"></div>
+  <div id="messenger" class="scroll-section"></div>
 
   <!-- Matrix Animation -->
   <script>
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
-
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
 
@@ -206,21 +252,37 @@
       for (let i = 0; i < drops.length; i++) {
         const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
         drops[i]++;
       }
     }
 
     setInterval(draw, 50);
-
     window.addEventListener('resize', () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     });
   </script>
+
+  <!-- Scroll Toggle Script -->
+  <script>
+    document.querySelectorAll('.nav-scroll').forEach(link => {
+      let lastClick = 0;
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        const now = Date.now();
+        if (target && now - lastClick < 1000) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+        lastClick = now;
+      });
+    });
+  </script>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
