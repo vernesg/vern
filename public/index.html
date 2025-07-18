@@ -187,102 +187,113 @@
 </head>
 <body>
 
-  <canvas id="matrix"></canvas>
+<canvas id="matrix"></canvas>
 
-  <div id="loading-screen">
-    <h1>ʟᴏᴀᴅɪɴɢ ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...</h1>
-  </div>
+<div id="loading-screen">
+  <h1>ʟᴏᴀᴅɪɴɢ ᴘʟᴇᴀsᴇ ᴡᴀɪᴛ...</h1>
+</div>
 
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="#"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item"><span class="nav-link">MY PROJECTS</span></li>
-          <li class="nav-item"><a class="nav-link nav-scroll" href="https://erash-auot.vercel.app/">➤ Ai Chatbot</a></li>
-          <li class="nav-item"><a class="nav-link nav-scroll" href="urangkapolka.vercel.app/docs">➤ Rest API</a></li>
-          <li class="nav-item"><a class="nav-link nav-scroll" href="https://image-generator-nine-lyart.vercel.app/">➤ Image Generator</a></li>
-          <li class="nav-item"><a class="nav-link nav-scroll" href="https://automated-messenger-bot.onrender.com/">➤ Messenger Bot</a></li>
-        </ul>
-      </div>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link nav-scroll" href="#main-content">MY PROJECTS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-scroll" href="https://erash-auot.vercel.app/">➤ Ai Chatbot</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-scroll" href="https://urangkapolka.vercel.app/docs">➤ Rest API</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-scroll" href="https://image-generator-nine-lyart.vercel.app/">➤ Image Generator</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-scroll" href="https://automated-messenger-bot.onrender.com/">➤ Messenger Bot</a>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <div id="main-content">
-    <div class="profile">
-      <img src="https://i.imgur.com/JjDryK9.jpeg" alt="Profile" class="profile-img" />
-      <h1>𝐈’𝐦 𝐕𝐞𝐫𝐧</h1>
-      <div class="quote">
-        <p>“A boy with a dream, building code that echoes through the future. Believe in yourself — every great developer was once a beginner.”</p>
-      </div>
+<div id="main-content">
+  <div class="profile">
+    <img src="https://i.imgur.com/JjDryK9.jpeg" alt="Profile" class="profile-img" />
+    <h1>𝐈’𝐦 𝐕𝐞𝐫𝐧</h1>
+    <div class="quote">
+      <p>“A boy with a dream, building code that echoes through the future. Believe in yourself — every great developer was once a beginner.”</p>
     </div>
   </div>
+</div>
 
-  <!-- Scroll Sections -->
-  <div id="chatbot" class="scroll-section"></div>
-  <div id="restapi" class="scroll-section"></div>
-  <div id="imggen" class="scroll-section"></div>
-  <div id="messenger" class="scroll-section"></div>
+<!-- Scroll Sections -->
+<div id="chatbot" class="scroll-section"></div>
+<div id="restapi" class="scroll-section"></div>
+<div id="imggen" class="scroll-section"></div>
+<div id="messenger" class="scroll-section"></div>
 
-  <!-- Matrix Animation -->
-  <script>
-    const canvas = document.getElementById('matrix');
-    const ctx = canvas.getContext('2d');
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
+<!-- Matrix Animation -->
+<script>
+  const canvas = document.getElementById('matrix');
+  const ctx = canvas.getContext('2d');
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
 
-    const katakana = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ';
-    const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    const nums = '0123456789';
-    const alphabet = katakana + latin + nums;
+  const katakana = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホ';
+  const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  const nums = '0123456789';
+  const alphabet = katakana + latin + nums;
 
-    const fontSize = 14;
-    const columns = canvas.width / fontSize;
-    const drops = Array.from({ length: columns }).fill(1);
+  const fontSize = 14;
+  const columns = canvas.width / fontSize;
+  const drops = Array.from({ length: columns }).fill(1);
 
-    function draw() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#0ff';
-      ctx.font = fontSize + 'px monospace';
+  function draw() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = '#0ff';
+    ctx.font = fontSize + 'px monospace';
 
-      for (let i = 0; i < drops.length; i++) {
-        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-      }
+    for (let i = 0; i < drops.length; i++) {
+      const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
     }
+  }
 
-    setInterval(draw, 50);
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+  setInterval(draw, 50);
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>
+
+<!-- Scroll Toggle Script -->
+<script>
+  document.querySelectorAll('.nav-scroll').forEach(link => {
+    let lastClick = 0;
+    link.addEventListener('click', function(e) {
+      if (!this.getAttribute('href').startsWith('#')) return;
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      const now = Date.now();
+      if (target && now - lastClick < 1000) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+      lastClick = now;
     });
-  </script>
+  });
+</script>
 
-  <!-- Scroll Toggle Script -->
-  <script>
-    document.querySelectorAll('.nav-scroll').forEach(link => {
-      let lastClick = 0;
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        const now = Date.now();
-        if (target && now - lastClick < 1000) {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-        lastClick = now;
-      });
-    });
-  </script>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
